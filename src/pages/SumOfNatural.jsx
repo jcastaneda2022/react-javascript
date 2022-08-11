@@ -1,23 +1,21 @@
 import React from "react";
 import { useState } from "react";
 
-function MultiplicationTable() {
+function Sum() {
   const [input, setInput] = useState("");
-  const sequence = [];
 
-  const getMultiplicationTable = (number) => {
+  const getSumOfAllNumbers = (number) => {
     // Check if letter or null
     if (isNaN(number) || !number) {
       return "Please enter a number";
     }
 
-    //Creating a multiplication table
-    for (let i = 1; i <= 10; i++) {
-      // display the result
-      sequence.push(i * number);
+    let sum = 0;
+    for (let i = 1; i <= number; i++) {
+      sum = sum + i;
     }
 
-    return sequence.map((data) => data);
+    return sum;
   };
 
   return (
@@ -34,14 +32,14 @@ function MultiplicationTable() {
         </div>
         <div className="col-md-5">
           <textarea
-            className="text-primary"
+            className="text-primary fs-5"
             name="text"
             id="text"
             cols="30"
             rows="10"
             readOnly={true}
             placeholder="Output"
-            value={getMultiplicationTable(input)}
+            value={getSumOfAllNumbers(input)}
           />
         </div>
       </div>
@@ -49,4 +47,4 @@ function MultiplicationTable() {
   );
 }
 
-export default MultiplicationTable;
+export default Sum;
