@@ -1,16 +1,19 @@
 import React from "react";
-
-// Take input from the user
-const number = parseInt(prompt("Enter a positive number: "));
+import { useState } from "react";
 
 function Fibonacci() {
+  const [number, setNumber] = useState(null);
   var first = 0;
   var second = 1;
   const sequence = [];
 
   const generateFibonacci = () => {
+    // Check if letter or null
+    if (isNaN(number) || !number) {
+      return <h2 className="text-primary">Please enter a number</h2>;
+    }
     // First 2 scenarios
-    if (number === 1) {
+    else if (number === 1) {
       return <h2 className="text-primary">0</h2>;
     } else if (number === 2) {
       return [0, 1].map((data, index) => (
@@ -37,10 +40,25 @@ function Fibonacci() {
   };
 
   return (
-    <div className="p-5">
-      <h1>Enter the number of terms: {number}</h1>
-      <h2>Fibonacci Series: </h2>
-      {generateFibonacci()}
+    <div className="container p-5">
+      <div className="row">
+        <div className="col-12">
+          <input
+            type="text"
+            className="w-50 lead"
+            placeholder="Please enter a positive number"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+          />
+        </div>
+        <div className="col-12">
+          <div className="pt-5">
+            <h1>Enter the number of terms: {number}</h1>
+            <h2>Fibonacci Series: </h2>
+            {generateFibonacci()}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
