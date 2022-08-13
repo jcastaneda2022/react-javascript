@@ -1,52 +1,44 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-function MultiplicationTable() {
+export default function MultiplicationTable() {
   const [input, setInput] = useState("");
   const sequence = [];
 
-  const getMultiplicationTable = (number) => {
-    // Check if letter or null
-    if (isNaN(number) || !number) {
-      return "Please enter a number";
+  const getMultiplicationTable = () => {
+    if (isNaN(input) || !input) {
+      return (
+        <h1 className="col-12 w-100 text-primary">Please enter a Number</h1>
+      );
     }
 
-    //Creating a multiplication table
+    // Create multiplication table
     for (let i = 1; i <= 10; i++) {
-      // display the result
-      sequence.push(i * number);
+      sequence.push(i * input);
     }
 
-    return sequence.map((data) => data);
+    return sequence.map((data) => (
+      <h1 className="col-12 w-100 text-primary">{data}</h1>
+    ));
   };
 
   return (
     <div className="container p-5">
       <div className="row">
-        <div className="col-md-5">
+        <div className="col-12 w-50 pb-5">
           <input
             type="text"
             className="w-100 lead"
             placeholder="Input"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(event) => {
+              setInput(event.target.value);
+            }}
           />
         </div>
-        <div className="col-md-5">
-          <textarea
-            className="text-primary"
-            name="text"
-            id="text"
-            cols="30"
-            rows="10"
-            readOnly={true}
-            placeholder="Output"
-            value={getMultiplicationTable(input)}
-          />
-        </div>
+        <h1 className="col-12 w-100 text-primary">
+          {getMultiplicationTable()}
+        </h1>
       </div>
     </div>
   );
 }
-
-export default MultiplicationTable;
