@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 
-export default function SumOfNatural() {
+export default function RightTriangle() {
   const [input, setInput] = useState("");
 
-  const getSumOfNaturalNumbers = () => {
+  const generateRightTriangle = () => {
+    // Check if letter or null
     if (isNaN(input) || !input) {
-      return "Please enter a number";
+      return (
+        <h1 className="col-12 w-100 text-primary">Please enter a Number</h1>
+      );
     }
 
-    let total = 0;
+    // input = 3
+    let total = "";
+    // total = " * * *"
+    const triangle = [];
+    // triangle = [" *", " * *", " * * *"]
     for (let i = 1; i <= input; i++) {
-      total = total + i;
+      total = total.concat(" *");
+      triangle.push(total);
     }
 
-    return total;
+    return triangle.map((data, index) => (
+      <h1 className="col-12 w-100 text-primary" key={index}>
+        {data}
+      </h1>
+    ));
   };
 
   return (
@@ -30,9 +42,7 @@ export default function SumOfNatural() {
             }}
           />
         </div>
-        <h1 className="col-12 w-100 text-primary">
-          {getSumOfNaturalNumbers()}
-        </h1>
+        {generateRightTriangle()}
       </div>
     </div>
   );
